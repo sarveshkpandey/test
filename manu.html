@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Bootstrap 5 Right Sidebar Overlay</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #overlay a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #overlay a:hover {
+            color: #f1f1f1;
+        }
+
+        #overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 36px;
+            color: #818181;
+            z-index: 2;
+        }
+
+        #main {
+            transition: margin-right .5s;
+            padding: 16px;
+        }
+
+        @media screen and (max-height: 450px) {
+            #overlay {padding-top: 15px;}
+            #overlay a {font-size: 18px;}
+        }
+
+        .navbar-toggler {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            z-index: 3;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+            border: 1px solid #fff;
+            width: 1.5em;
+            height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div id="overlay">
+            <div class="closebtn" onclick="closeOverlay()">&times;</div>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div id="main">
+            <button class="navbar-toggler" type="button" onclick="toggleOverlay()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Rest of your content goes here -->
+            <h2>Main Content</h2>
+            <p>This is the main content of your page.</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function toggleOverlay() {
+        var overlay = document.getElementById("overlay");
+        var main = document.getElementById("main");
+        if (overlay.style.width === "250px") {
+            overlay.style.width = "0";
+            main.style.marginRight = "0";
+        } else {
+            overlay.style.width = "250px";
+            main.style.marginRight = "250px";
+        }
+    }
+
+    function closeOverlay() {
+        var overlay = document.getElementById("overlay");
+        var main = document.getElementById("main");
+        overlay.style.width = "0";
+        main.style.marginRight = "0";
+    }
+</script>
+
+</body>
+</html>
